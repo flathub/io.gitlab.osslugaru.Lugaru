@@ -1,0 +1,34 @@
+{
+  "app-id": "io.gitlab.osslugaru.Lugaru",
+  "runtime": "org.freedesktop.Platform",
+  "runtime-version": "1.6",
+  "sdk": "org.freedesktop.Sdk",
+  "command": "lugaru",
+  "rename-desktop-file": "lugaru.desktop",
+  "rename-icon": "lugaru",
+  "rename-appdata-file": "lugaru.appdata.xml",
+  "finish-args": [
+    "--device=dri",
+    "--socket=pulseaudio",
+    "--socket=wayland",
+    "--socket=x11"
+  ],
+  "modules": [
+    "shared-modules/glu/glu-9.0.0.json",
+    {
+      "name": "osslugaru",
+      "buildsystem": "cmake",
+      "config-opts": [
+        "-DSYSTEM_INSTALL=ON"
+      ],
+      "sources": [
+        {
+          "type": "git",
+          "url": "https://gitlab.com/osslugaru/lugaru.git",
+          "branch": "1.2",
+          "commit": "c7b99378439735c60f84869b05c6ebde53083667"
+        }
+      ]
+    }
+  ]
+}
