@@ -8,7 +8,7 @@
   "rename-icon": "lugaru",
   "rename-appdata-file": "lugaru.appdata.xml",
   "finish-args": [
-    "--device=dri",
+    "--device=all",
     "--socket=pulseaudio",
     "--socket=wayland",
     "--socket=x11"
