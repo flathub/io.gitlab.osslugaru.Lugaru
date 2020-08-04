@@ -20,7 +20,8 @@
       "name": "osslugaru",
       "buildsystem": "cmake-ninja",
       "config-opts": [
-        "-DSYSTEM_INSTALL=ON"
+        "-DSYSTEM_INSTALL=ON",
+        "-DLUGARU_VERSION_RELEASE='1.2-Flathub'"
       ],
       "sources": [
         {
