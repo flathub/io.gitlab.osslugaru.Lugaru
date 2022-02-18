@@ -1,7 +1,7 @@
 {
   "app-id": "io.gitlab.osslugaru.Lugaru",
   "runtime": "org.freedesktop.Platform",
-  "runtime-version": "18.08",
+  "runtime-version": "21.08",
   "sdk": "org.freedesktop.Sdk",
   "command": "lugaru",
   "rename-desktop-file": "lugaru.desktop",
@@ -14,7 +14,7 @@
     "--socket=x11"
   ],
   "modules": [
-    "shared-modules/glu/glu-9.0.0.json",
+    "shared-modules/glu/glu-9.json",
     {
       "name": "osslugaru",
       "buildsystem": "cmake",
