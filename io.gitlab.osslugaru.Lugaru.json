@@ -6,7 +6,7 @@
   "command": "lugaru",
   "rename-desktop-file": "lugaru.desktop",
   "rename-icon": "lugaru",
-  "rename-appdata-file": "lugaru.appdata.xml",
+  "rename-appdata-file": "lugaru.metainfo.xml",
   "finish-args": [
     "--device=all",
     "--socket=pulseaudio",
@@ -27,6 +27,13 @@
           "url": "https://gitlab.com/osslugaru/lugaru.git",
           "branch": "1.2",
           "commit": "c7b99378439735c60f84869b05c6ebde53083667"
+        },
+        {
+          "type": "patch",
+          "paths": [
+            "Add-content-ratings-to-AppStream.patch",
+            "AppStream-info-Various-improvements-adds-changelog.patch"
+          ]
         }
       ]
     }
