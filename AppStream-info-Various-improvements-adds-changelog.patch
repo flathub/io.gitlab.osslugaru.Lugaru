@@ -1,0 +1,200 @@
+From 0399b2e239f08ae4aedad3f7344c21efb44c06c5 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?R=C3=A9mi=20Verschelde?= <rverschelde@gmail.com>
+Date: Fri, 22 May 2020 14:07:51 +0200
+Subject: [PATCH] AppStream info: Various improvements, adds changelog
+
+- Rename to `.metainfo.xml` and change installation directory to match
+  new specification requirements:
+  https://www.freedesktop.org/software/appstream/docs/chap-Metadata.html#spec-component-location
+- Added release information.
+- Omitted OARS tags with the value of none.
+- Every screenshot tag needs to have a image child.
+- Added URLs for bugtracker and contact.
+- Fixed indentation.
+- Made copyright more generic.
+
+Co-authored-by: Harald H <harald@fsfe.org>
+---
+ CMakeLists.txt                 |  2 +-
+ Dist/Linux/lugaru.appdata.xml  | 53 -------------------
+ Dist/Linux/lugaru.metainfo.xml | 94 ++++++++++++++++++++++++++++++++++
+ 3 files changed, 95 insertions(+), 54 deletions(-)
+ delete mode 100644 Dist/Linux/lugaru.appdata.xml
+ create mode 100644 Dist/Linux/lugaru.metainfo.xml
+
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index cceaf63e..190ada43 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -302,8 +302,8 @@ if(LINUX)
+         install(PROGRAMS ${CMAKE_CURRENT_BINARY_DIR}/lugaru DESTINATION ${CMAKE_INSTALL_BINDIR})
+         # Trailing '/' is significant, it installs and _renames_ Data/ as the destination folder
+         install(DIRECTORY ${CMAKE_SOURCE_DIR}/Data/ DESTINATION ${CMAKE_INSTALL_DATADIR}/${PROJECT_NAME})
+-        install(FILES ${CMAKE_SOURCE_DIR}/Dist/Linux/lugaru.appdata.xml DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/appdata)
+         install(FILES ${CMAKE_SOURCE_DIR}/Dist/Linux/lugaru.desktop DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/applications)
++        install(FILES ${CMAKE_SOURCE_DIR}/Dist/Linux/lugaru.metainfo.xml DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/metainfo)
+         install(FILES ${CMAKE_SOURCE_DIR}/Dist/Linux/lugaru.png DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/icons/hicolor/128x128/apps)
+         install(FILES ${CMAKE_SOURCE_DIR}/Dist/Linux/lugaru.6 DESTINATION ${CMAKE_INSTALL_MANDIR}/man6)
+     else()
+diff --git a/Dist/Linux/lugaru.appdata.xml b/Dist/Linux/lugaru.appdata.xml
+deleted file mode 100644
+index 90e9e1b7..00000000
+--- a/Dist/Linux/lugaru.appdata.xml
++++ /dev/null
+@@ -1,53 +0,0 @@
+-<?xml version="1.0" encoding="UTF-8"?>
+-<!-- Copyright 2017 Neal Gompa <ngompa13@gmail.com> -->
+-<component type="desktop">
+- <id>lugaru.desktop</id>
+- <metadata_license>CC-BY-SA-4.0</metadata_license>
+- <project_license>GPL-2.0+ and CC-BY-SA-3.0</project_license>
+- <name>Lugaru HD</name>
+- <summary>Third person ninja rabbit fighting game</summary>
+- <description>
+-  <p>
+-     Lugaru (pronounced Loo-GAH-roo) is a cross-platform third-person action game. 
+-     The main character, Turner, is an anthropomorphic rebel bunny rabbit with impressive combat skills.
+-  </p>
+-
+-  <p>
+-     In his quest to find those responsible for slaughtering his village, 
+-     he uncovers a far-reaching conspiracy involving the corrupt leaders
+-     of the rabbit republic and the starving wolves from a nearby den. 
+-     Turner takes it upon himself to fight against their plot and save 
+-     his fellow rabbits from slavery.
+-  </p>
+- </description>
+- <content_rating type="oars-1.0">
+-   <content_attribute id="violence-cartoon">intense</content_attribute>
+-   <content_attribute id="violence-fantasy">intense</content_attribute>
+-   <content_attribute id="violence-realistic">none</content_attribute>
+-   <content_attribute id="violence-bloodshed">mild</content_attribute>
+-   <content_attribute id="violence-sexual">none</content_attribute>
+-   <content_attribute id="drugs-alcohol">none</content_attribute>
+-   <content_attribute id="drugs-narcotics">none</content_attribute>
+-   <content_attribute id="drugs-tobacco">none</content_attribute>
+-   <content_attribute id="sex-nudity">none</content_attribute>
+-   <content_attribute id="sex-themes">none</content_attribute>
+-   <content_attribute id="language-profanity">mild</content_attribute>
+-   <content_attribute id="language-humor">none</content_attribute>
+-   <content_attribute id="language-discrimination">none</content_attribute>
+-   <content_attribute id="social-chat">none</content_attribute>
+-   <content_attribute id="social-info">none</content_attribute>
+-   <content_attribute id="social-audio">none</content_attribute>
+-   <content_attribute id="social-location">none</content_attribute>
+-   <content_attribute id="social-contacts">none</content_attribute>
+-   <content_attribute id="money-purchasing">none</content_attribute>
+-   <content_attribute id="money-gambling">none</content_attribute>
+- </content_rating>
+- <screenshots>
+-   <screenshot type="default" width="864" height="417">
+-       https://osslugaru.gitlab.io/images/lugaru-banner.png
+-   </screenshot>
+- </screenshots>
+- <url type="homepage">https://osslugaru.gitlab.io/</url>
+- <update_contact>ngompa13_at_gmail.com</update_contact>
+-</component>
+-
+diff --git a/Dist/Linux/lugaru.metainfo.xml b/Dist/Linux/lugaru.metainfo.xml
+new file mode 100644
+index 00000000..19611964
+--- /dev/null
++++ b/Dist/Linux/lugaru.metainfo.xml
+@@ -0,0 +1,94 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<!-- Copyright 2020 OSS Lugaru contributors -->
++<!-- Originally written by Neal Gompa <ngompa13@gmail.com> -->
++<component type="desktop">
++  <id>lugaru.desktop</id>
++  <metadata_license>CC-BY-SA-4.0</metadata_license>
++  <project_license>GPL-2.0+ and CC-BY-SA-3.0</project_license>
++  <name>Lugaru HD</name>
++  <summary>Third person ninja rabbit fighting game</summary>
++  <description>
++    <p>
++      Lugaru (pronounced Loo-GAH-roo) is a cross-platform third-person action game.
++      The main character, Turner, is an anthropomorphic rebel bunny rabbit with impressive combat skills.
++    </p>
++
++    <p>
++      In his quest to find those responsible for slaughtering his village,
++      he uncovers a far-reaching conspiracy involving the corrupt leaders
++      of the rabbit republic and the starving wolves from a nearby den.
++      Turner takes it upon himself to fight against their plot and save
++      his fellow rabbits from slavery.
++    </p>
++  </description>
++  <releases>
++    <release version="1.2" date="2017-02-11">
++      <p>
++        Second release of the open source Lugaru project! It continues the refactoring
++        work to make the old Lugaru code more modular and easier to maintain and
++        extend. A particular attention was given to the development tools (in game
++        editor) to improve the modability of the game.
++      </p>
++      <p>Highlights:</p>
++      <ul>
++        <li>Keep track of and display the game's version number in the console and main menu.</li>
++        <li>
++          Many fixes and improvements to development tools, most of them should now work
++          as described in the documentation.
++        </li>
++        <li>New monospace font for the console, more readable.</li>
++        <li>Configurable campaign end message.</li>
++        <li>Various fixes to mod levels and campaigns.</li>
++        <li>
++          A lot of behind-the-scenes refactoring that should help bring more interesting changes
++          in future releases.
++        </li>
++      </ul>
++    </release>
++    <release version="1.1" date="2016-12-14">
++      <p>
++        First release of the open source Lugaru project! It contains most commits
++        made from various contributors since the open sourcing in 2010, and is
++        therefore more advanced than the preceding Lugaru HD release by Wolfire.
++      </p>
++      <p>Highlights:</p>
++      <ul>
++        <li>Multiple campaigns support, making it easier to install and play mods!</li>
++        <li>
++          These Lugaru mods are included by default as alternative to the Turner official campaign:
++          <ul>
++            <li>Temple, by Silb</li>
++            <li>Empire, by Jendraz</li>
++            <li>The Seven Tasks, by Philtron R. (albeit with some engine-related issues)</li>
++          </ul>
++        </li>
++        <li>
++          All assets (animations, textures, models, maps, sounds, etc.) of Lugaru HD
++          by Wolfire are under a free and open source license (CC-BY-SA 3.0)!
++        </li>
++        <li>
++          Window and input management ported from SDL 1.2 to SDL 2.0, improving the
++          support for modern screen resolutions and fullscreen mode, as well as
++          better input handling.
++        </li>
++      </ul>
++    </release>
++  </releases>
++  <content_rating type="oars-1.0">
++    <content_attribute id="violence-cartoon">intense</content_attribute>
++    <content_attribute id="violence-fantasy">intense</content_attribute>
++    <content_attribute id="violence-bloodshed">mild</content_attribute>
++    <content_attribute id="language-profanity">mild</content_attribute>
++  </content_rating>
++  <screenshots>
++    <screenshot type="default">
++      <image width="864" height="417">
++        https://osslugaru.gitlab.io/images/lugaru-banner.png
++      </image>
++    </screenshot>
++  </screenshots>
++  <url type="homepage">https://osslugaru.gitlab.io/</url>
++  <url type="bugtracker">https://gitlab.com/osslugaru/lugaru/issues</url>
++  <url type="contact">https://webchat.freenode.net/#lugaru</url>
++</component>
++
+-- 
+GitLab
+
