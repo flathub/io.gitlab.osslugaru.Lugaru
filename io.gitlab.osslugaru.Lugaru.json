@@ -1,52 +1,52 @@
 {
-  "app-id": "io.gitlab.osslugaru.Lugaru",
-  "runtime": "org.freedesktop.Platform",
-  "runtime-version": "25.08",
-  "sdk": "org.freedesktop.Sdk",
-  "command": "lugaru",
-  "rename-desktop-file": "lugaru.desktop",
-  "rename-icon": "lugaru",
-  "rename-appdata-file": "lugaru.metainfo.xml",
-  "finish-args": [
-    "--device=all",
-    "--socket=pulseaudio",
-    "--socket=wayland",
-    "--socket=fallback-x11",
-    "--share=ipc"
-  ],
-  "modules": [
-    "shared-modules/glu/glu-9.json",
-    {
-      "name": "osslugaru",
-      "buildsystem": "cmake-ninja",
-      "config-opts": [
-        "-DCMAKE_BUILD_TYPE=RelWithDebInfo",
-        "-DSYSTEM_INSTALL=ON",
-        "-DLUGARU_VERSION_RELEASE=1.2-Flathub",
-        "-DCMAKE_POLICY_VERSION_MINIMUM=3.5"
-      ],
-      "post-install": [
-        "install -Dm644 lugaru.metainfo.xml -t /app/share/metainfo/"
-      ],
-      "sources": [
+    "id": "io.gitlab.osslugaru.Lugaru",
+    "runtime": "org.freedesktop.Platform",
+    "runtime-version": "25.08",
+    "sdk": "org.freedesktop.Sdk",
+    "command": "lugaru",
+    "rename-desktop-file": "lugaru.desktop",
+    "rename-icon": "lugaru",
+    "rename-appdata-file": "lugaru.metainfo.xml",
+    "finish-args": [
+        "--device=all",
+        "--socket=pulseaudio",
+        "--socket=wayland",
+        "--socket=fallback-x11",
+        "--share=ipc"
+    ],
+    "modules": [
+        "shared-modules/glu/glu-9.json",
         {
-          "type": "git",
-          "url": "https://gitlab.com/osslugaru/lugaru.git",
-          "tag": "1.2",
-          "commit": "c7b99378439735c60f84869b05c6ebde53083667"
-        },
-        {
-          "type": "patch",
-          "paths": [
-            "patches/0001-fix-cmake-errors.patch",
-            "patches/0002-ImageIO-fix-invalid-conversion.patch"
-          ]
-        },
-        {
-          "type": "file",
-          "path": "lugaru.metainfo.xml"
+            "name": "osslugaru",
+            "buildsystem": "cmake-ninja",
+            "config-opts": [
+                "-DCMAKE_BUILD_TYPE=RelWithDebInfo",
+                "-DSYSTEM_INSTALL=ON",
+                "-DLUGARU_VERSION_RELEASE=1.2-Flathub",
+                "-DCMAKE_POLICY_VERSION_MINIMUM=3.5"
+            ],
+            "post-install": [
+                "install -Dm644 lugaru.metainfo.xml -t /app/share/metainfo/"
+            ],
+            "sources": [
+                {
+                    "type": "git",
+                    "url": "https://gitlab.com/osslugaru/lugaru.git",
+                    "tag": "1.2",
+                    "commit": "c7b99378439735c60f84869b05c6ebde53083667"
+                },
+                {
+                    "type": "patch",
+                    "paths": [
+                        "patches/0001-fix-cmake-errors.patch",
+                        "patches/0002-ImageIO-fix-invalid-conversion.patch"
+                    ]
+                },
+                {
+                    "type": "file",
+                    "path": "lugaru.metainfo.xml"
+                }
+            ]
         }
-      ]
-    }
-  ]
+    ]
 }
