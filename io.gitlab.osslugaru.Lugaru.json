@@ -1,7 +1,7 @@
 {
   "app-id": "io.gitlab.osslugaru.Lugaru",
   "runtime": "org.freedesktop.Platform",
-  "runtime-version": "22.08",
+  "runtime-version": "25.08",
   "sdk": "org.freedesktop.Sdk",
   "command": "lugaru",
   "rename-desktop-file": "lugaru.desktop",
@@ -20,8 +20,13 @@
       "name": "osslugaru",
       "buildsystem": "cmake-ninja",
       "config-opts": [
+        "-DCMAKE_BUILD_TYPE=RelWithDebInfo",
         "-DSYSTEM_INSTALL=ON",
-        "-DLUGARU_VERSION_RELEASE='1.2-Flathub'"
+        "-DLUGARU_VERSION_RELEASE=1.2-Flathub",
+        "-DCMAKE_POLICY_VERSION_MINIMUM=3.5"
+      ],
+      "post-install": [
+        "install -Dm644 lugaru.metainfo.xml -t /app/share/metainfo/"
       ],
       "sources": [
         {
@@ -33,9 +38,13 @@
         {
           "type": "patch",
           "paths": [
-            "Add-content-ratings-to-AppStream.patch",
-            "AppStream-info-Various-improvements-adds-changelog.patch"
+            "patches/0001-fix-cmake-errors.patch",
+            "patches/0002-ImageIO-fix-invalid-conversion.patch"
           ]
+        },
+        {
+          "type": "file",
+          "path": "lugaru.metainfo.xml"
         }
       ]
     }
